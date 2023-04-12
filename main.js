@@ -123,8 +123,80 @@ let mike= {
 console.log(mike);
 
 console.log(`First name: ${mike.firstName}`);
+console.log(`First name: ${mike["firstName"]}`);
     let mikeStr= `${mike.firstName} ${mike.lastName},age:${mike.age}`;
     console.log(mikeStr);
+
+
+    let mikeAdvanced={
+        firstName:'Mike',
+        lastName:'Back',
+        age:38,
+        hobbies:['music','programming','reading','games']
+    };
+    console.log(mikeAdvanced); //Object
+    let mikeJSON=JSON.stringify(mikeAdvanced); //Object to JSON
+    console.log(mikeJSON);
+    console.log(JSON.parse(mikeJSON)); //Back to Object
+
+    //Loop over object
+for(let propertyName in mikeAdvanced)
+{
+    let propertyValue=mikeAdvanced[propertyName];
+    console.log(propertyName,propertyValue);
+}
+//Loop through object and array inside of object
+for(let propertyName in mikeAdvanced)  //loop over object
+{
+    let propertyValue=mikeAdvanced[propertyName];   //get value from key
+    if(Array.isArray(propertyValue)==true)     // check if array
+    {
+        for(let hobby of propertyValue)     //loop over array
+        {
+            console.log("Hobby:"+hobby)
+
+        }  }else{
+            console.log(propertyName+" :"+ propertyValue);
+        }
+    }
+//connection to HTML
+//Ask JS to create a new element
+let myDiv=document.createElement('div');
+myDiv.innerHTML= `
+<h1> Hello from JS! </h1>
+<p> This is text from Java  script, my age is ${mike.age}</p>` ;
+//Grab from the body tag
+let body= document.querySelector('body');
+// Add the div to the html
+body.append(myDiv);
+
+//Another way to add data
+let myBands=[
+    {
+    name:'The Beatles',
+    genre:'Pop'
+},
+{
+    name: 'The Rolling stones',
+    genre: 'Rock'
+}
+];
+//Gran the bands div
+let bandsDiv= document.querySelector('#bands');
+for(let band of myBands){
+    bandsDiv.innerHTML+= `
+        <div class="band">
+            <h2>${band.name}</h2>
+            <p> Genre:${band.genre}</p>
+        </div>
+    `;
+}
+
+
+
+
+
+
 
 
 
